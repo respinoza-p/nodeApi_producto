@@ -7,8 +7,8 @@ exports.createUsuario = async (req, res) => {
 
     // Encriptar la contraseña antes de crear el usuario
     if (req.body.password) {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        req.body.password = await bcryptjs.hash(req.body.password, salt);
     }
 
     const usuario = new Usuario(req.body);
@@ -54,3 +54,28 @@ exports.deleteUsuario = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Obtener un usuario por email y verificar la contraseña
+exports.getUsuarioByEmailAndPassword = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      // Verificar si el usuario existe
+      const usuario = await Usuario.findOne({ email });
+      if (!usuario) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+      }
+  
+      // Comparar la contraseña
+      const isMatch = await bcryptjs.compare(password, usuario.password);
+      if (!isMatch) {
+        return res.status(401).json({ message: "Contraseña incorrecta" });
+      }
+  
+      // Retornar el usuario (sin la contraseña)
+      const { password: _, ...usuarioSinPassword } = usuario.toObject();
+      res.status(200).json(usuarioSinPassword);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };

@@ -29,6 +29,7 @@ const showApiLinks = (port) => {
   console.log(`- Usuarios (POST): http://localhost:${port}/api/usuarios`);
   console.log(`- Usuarios (PUT): http://localhost:${port}/api/usuarios/:id`);
   console.log(`- Usuarios (DELETE): http://localhost:${port}/api/usuarios/:id`);
+  console.log(`- Usuarios (LOGIN): http://localhost:${port}/api/usuarios/login`);
 };
 
 // Iniciar el servidor y mostrar las rutas

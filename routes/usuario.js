@@ -6,5 +6,6 @@ const usuarioController = require("../controllers/usuarioController");
 router.post("/", usuarioController.createUsuario); // Crear un nuevo usuario
 router.put("/:id", usuarioController.updateUsuario); // Actualizar un usuario por ID
 router.delete("/:id", usuarioController.deleteUsuario); // Eliminar un usuario por ID
+router.post("/login", usuarioController.getUsuarioByEmailAndPassword); // Login de usuario
 
 module.exports = router;
