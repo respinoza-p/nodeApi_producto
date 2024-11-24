@@ -1,4 +1,5 @@
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const Usuario = require("../models/Usuario");
 
 // Crear un nuevo usuario
@@ -13,8 +14,14 @@ exports.createUsuario = async (req, res) => {
 
     const usuario = new Usuario(req.body);
     const nuevoUsuario = await usuario.save();
-    console.log(`Nuevo usuario creado: ${nuevoUsuario.nombre}`);
-    res.status(201).json(nuevoUsuario);
+
+    // Convertir el objeto a un JSON y eliminar la contraseña antes de enviarlo
+    const { password, ...usuarioSinPassword } = nuevoUsuario.toObject();
+
+    console.log(`Nuevo usuario creado: ${usuarioSinPassword.nombre}`);
+
+    res.status(201).json(usuarioSinPassword);
+
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -25,8 +32,8 @@ exports.updateUsuario = async (req, res) => {
   try {
     // Encriptar la contraseña antes de actualizar el usuario
     if (req.body.password) {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        req.body.password = await bcryptjs.hash(req.body.password, salt);
     }
 
     const usuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
@@ -35,7 +42,13 @@ exports.updateUsuario = async (req, res) => {
     if (!usuario) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
-    res.json(usuario);
+    // Convertir el objeto a un JSON y eliminar la contraseña antes de enviarlo
+    const { password, ...usuarioSinPassword } = usuario.toObject();
+
+    console.log(`Usuario actualizado correctamente: ${usuarioSinPassword.nombre}`);
+    
+    res.status(201).json(usuarioSinPassword);
+    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -71,10 +84,15 @@ exports.getUsuarioByEmailAndPassword = async (req, res) => {
       if (!isMatch) {
         return res.status(401).json({ message: "Contraseña incorrecta" });
       }
-  
-      // Retornar el usuario (sin la contraseña)
-      const { password: _, ...usuarioSinPassword } = usuario.toObject();
-      res.status(200).json(usuarioSinPassword);
+    
+    //Se firma el TOKEN y se asigna un tiempo
+    const token = jwt.sign({ email, password }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    //Regresa el token
+    res.json({ token });    
+
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
