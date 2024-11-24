@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 require("dotenv").config();
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +14,29 @@ connectDB();
 // Middlewares
 app.use(cors());
 app.use(express.json());
+
+// Configuración básica de Swagger
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Documentación de API",
+      version: "1.0.0",
+      description: "Documentación generada automáticamente con Swagger",
+    },
+    servers: [
+      {
+        url: `http://localhost:${PORT}`, // Cambia si usas un dominio o puerto diferente
+      },
+    ],
+  },
+  apis: ["./routes/*.js"], // Rutas de los archivos donde tienes comentarios de Swagger
+};
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+
+// Ruta para Swagger UI
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Rutas
 app.use("/api/productos", require("./routes/producto"));
