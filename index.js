@@ -21,6 +21,7 @@ app.use("/api/usuarios", require("./routes/usuario"));
 const showApiLinks = (port) => {
   console.log(`\nAPI disponible en las siguientes rutas:`);
   console.log(`- Productos (GET): http://localhost:${port}/api/productos`);
+  console.log(`- Productos por ID (GET): http://localhost:${port}/api/productos/:id`);
   console.log(`- Productos (POST): http://localhost:${port}/api/productos`);
   console.log(`- Productos (PUT): http://localhost:${port}/api/productos/:id`);
   console.log(
