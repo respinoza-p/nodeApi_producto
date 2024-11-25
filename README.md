@@ -7,8 +7,6 @@ Este proyecto es una API REST desarrollada con Node.js y Express que permite ges
 API: https://nodeapi-producto.onrender.com/
 DOC: https://nodeapi-producto.onrender.com/api-docs/
 
-# POSTMAN
-Se agrega en el proyecto la colección de servicios para invocar la API: UDD-BOOTCAMP-PROYECTO6.postman_collection.json
 
 ## Tabla de Contenidos
 
