@@ -98,6 +98,7 @@ const showApiLinks = (port) => {
   console.log(`- Usuarios (PUT): http://localhost:${port}/api/usuarios/:id`);
   console.log(`- Usuarios (DELETE): http://localhost:${port}/api/usuarios/:id`);
   console.log(`- Usuarios (LOGIN): http://localhost:${port}/api/usuarios/login`);
+  console.log(`- Usuarios (Validar Token): http://localhost:${port}/api/usuarios/verifyToken`);
 };
 
 // Iniciar el servidor y mostrar las rutas

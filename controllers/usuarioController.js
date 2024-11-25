@@ -97,3 +97,29 @@ exports.getUsuarioByEmailAndPassword = async (req, res) => {
       res.status(500).json({ message: error.message });
     }
   };
+
+  //Verificar si el token de la sesión es válido
+  exports.verifyToken = (req, res) => {
+    try {
+      // Obtener el token del encabezado Authorization
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Token no proporcionado o inválido" });
+      }
+  
+      // Extraer el token
+      const token = authHeader.split(" ")[1];
+  
+      // Verificar el token
+      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+          return res.status(403).json({ message: "Token inválido o expirado" });
+        }
+  
+        // Responder con el contenido del token decodificado
+        res.status(200).json({ message: "Token válido", user: decoded });
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Error al procesar el token" });
+    }
+  };

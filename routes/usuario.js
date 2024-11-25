@@ -78,6 +78,35 @@ router.post("/login", usuarioController.getUsuarioByEmailAndPassword);
 
 /**
  * @swagger
+ * /usuarios/verifyToken:
+ *   post:
+ *     summary: Verificar la validez de un token
+ *     tags: [Usuarios]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Token válido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Token válido"
+ *                 user:
+ *                   type: object
+ *                   description: Información del token decodificado
+ *       401:
+ *         description: Token no proporcionado o inválido
+ *       403:
+ *         description: Token expirado o no autorizado
+ */
+router.post("/verifyToken", usuarioController.verifyToken);
+
+/**
+ * @swagger
  * /usuarios/{id}:
  *   put:
  *     summary: Actualizar un usuario por ID
