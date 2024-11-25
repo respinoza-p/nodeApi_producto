@@ -1,6 +1,9 @@
+Aquí tienes el README actualizado para incluir la estructura del proyecto basada en las carpetas `config`, `controllers`, `middlewares`, `models`, `routes`, e `index.js`:
+
+```markdown
 # API REST con Node.js, Express y Swagger
 
-Con el fin de aplicar los conocimientos en Node, API-REST y MONGO DB, este proyecto es una API REST que permite gestionar las cuentas de usuarios y un CRUD de productos y usuarios. Incluye una documentación interactiva generada automáticamente con Swagger.
+Este proyecto es una API REST desarrollada con Node.js y Express que permite gestionar productos y usuarios. Incluye una documentación interactiva generada automáticamente con Swagger.
 
 ## Tabla de Contenidos
 
@@ -30,5 +33,82 @@ Con el fin de aplicar los conocimientos en Node, API-REST y MONGO DB, este proye
 
 1. Clona este repositorio:
    ```bash
-   git clone [https://github.com/respinoza-p/nodeApi_producto.git](https://github.com/respinoza-p/nodeApi_producto.git)
-   cd nodeApi_producto
+   git clone https://github.com/tuusuario/tu-repositorio.git
+   cd tu-repositorio
+   ```
+
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Configura las variables de entorno en un archivo `.env` en la raíz del proyecto. Ejemplo:
+   ```env
+   PORT=3000
+   MONGO_URI=mongodb://localhost:27017/tu_base_de_datos
+   ```
+
+4. Inicia la aplicación:
+   ```bash
+   npm start
+   ```
+
+5. Accede a la aplicación en tu navegador:
+   - API: [http://localhost:3000](http://localhost:3000)
+   - Documentación de la API: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+## Uso
+
+La API expone las siguientes rutas principales:
+
+### Productos
+- **GET** `/api/productos`: Listar todos los productos.
+- **GET** `/api/productos/:id`: Obtener un producto por su ID.
+- **POST** `/api/productos`: Crear un nuevo producto.
+- **PUT** `/api/productos/:id`: Actualizar un producto existente.
+- **DELETE** `/api/productos/:id`: Eliminar un producto.
+
+### Usuarios
+- **POST** `/api/usuarios`: Registrar un nuevo usuario.
+- **PUT** `/api/usuarios/:id`: Actualizar un usuario existente.
+- **DELETE** `/api/usuarios/:id`: Eliminar un usuario.
+- **POST** `/api/usuarios/login`: Autenticar a un usuario.
+
+## Documentación de la API
+
+La documentación está disponible en la ruta `/api-docs` y se genera automáticamente con Swagger. Para acceder, abre [http://localhost:3000/api-docs](http://localhost:3000/api-docs) en tu navegador.
+
+## Estructura del Proyecto
+
+El proyecto sigue una estructura modular basada en carpetas para organizar el código de manera clara y escalable:
+
+```plaintext
+├── config/
+│   └── db.js          # Configuración de conexión a la base de datos
+├── controllers/
+│   ├── producto.js    # Lógica de negocio para productos
+│   └── usuario.js     # Lógica de negocio para usuarios
+├── middlewares/
+│   └── auth.js        # Middleware para autenticación (si aplica)
+├── models/
+│   ├── Producto.js    # Esquema del modelo de Producto
+│   └── Usuario.js     # Esquema del modelo de Usuario
+├── routes/
+│   ├── producto.js    # Rutas relacionadas con productos
+│   └── usuario.js     # Rutas relacionadas con usuarios
+├── .env               # Variables de entorno
+├── index.js           # Punto de entrada de la aplicación
+├── package.json       # Archivo de configuración del proyecto
+└── README.md          # Documentación del proyecto
+```
+
+## Contribuciones
+
+Si deseas contribuir a este proyecto, por favor crea un fork, realiza tus cambios y envía un pull request. Toda contribución es bienvenida.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+```
+
+Este README incluye una descripción completa de la estructura del proyecto y detalla cómo las carpetas están organizadas para facilitar la comprensión y el desarrollo futuro.
