@@ -1,9 +1,11 @@
-Aquí tienes el README actualizado para incluir la estructura del proyecto basada en las carpetas `config`, `controllers`, `middlewares`, `models`, `routes`, e `index.js`:
-
 ```markdown
 # API REST con Node.js, Express y Swagger
 
 Este proyecto es una API REST desarrollada con Node.js y Express que permite gestionar productos y usuarios. Incluye una documentación interactiva generada automáticamente con Swagger.
+
+# URL de PRODUCCIÓN
+API: https://nodeapi-producto.onrender.com/
+DOC: https://nodeapi-producto.onrender.com/api-docs/
 
 ## Tabla de Contenidos
 
@@ -45,7 +47,7 @@ Este proyecto es una API REST desarrollada con Node.js y Express que permite ges
 3. Configura las variables de entorno en un archivo `.env` en la raíz del proyecto. Ejemplo:
    ```env
    PORT=3000
-   MONGO_URI=mongodb://localhost:27017/tu_base_de_datos
+   MONGO_URI=<completar con los datos de base de datos MONGO>
    ```
 
 4. Inicia la aplicación:
@@ -86,10 +88,10 @@ El proyecto sigue una estructura modular basada en carpetas para organizar el c�
 ├── config/
 │   └── db.js          # Configuración de conexión a la base de datos
 ├── controllers/
-│   ├── producto.js    # Lógica de negocio para productos
-│   └── usuario.js     # Lógica de negocio para usuarios
+│   ├── productoController.js    # Lógica de negocio para productos
+│   └── usuarioController.js     # Lógica de negocio para usuarios
 ├── middlewares/
-│   └── auth.js        # Middleware para autenticación (si aplica)
+│   └── authMiddleware.js        # Middleware para autenticación (si aplica)
 ├── models/
 │   ├── Producto.js    # Esquema del modelo de Producto
 │   └── Usuario.js     # Esquema del modelo de Usuario
