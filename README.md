@@ -36,7 +36,7 @@ DOC: https://nodeapi-producto.onrender.com/api-docs/
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/tuusuario/tu-repositorio.git
+   git clone https://github.com/respinoza-p/nodeApi_producto.git
    cd tu-repositorio
    ```
 
