@@ -78,6 +78,7 @@ La API expone las siguientes rutas principales:
 - **PUT** `/api/usuarios/:id`: Actualizar un usuario existente.
 - **DELETE** `/api/usuarios/:id`: Eliminar un usuario.
 - **POST** `/api/usuarios/login`: Autenticar a un usuario.
+- **POST** `/api/usuarios/verifyToken`: Valida token de la sesión.
 
 ## Documentación de la API
 
