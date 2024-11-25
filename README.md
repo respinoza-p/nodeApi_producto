@@ -103,14 +103,3 @@ El proyecto sigue una estructura modular basada en carpetas para organizar el c�
 ├── package.json       # Archivo de configuración del proyecto
 └── README.md          # Documentación del proyecto
 ```
-
-## Contribuciones
-
-Si deseas contribuir a este proyecto, por favor crea un fork, realiza tus cambios y envía un pull request. Toda contribución es bienvenida.
-
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
-```
-
-Este README incluye una descripción completa de la estructura del proyecto y detalla cómo las carpetas están organizadas para facilitar la comprensión y el desarrollo futuro.
