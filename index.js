@@ -15,22 +15,64 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-// Configuración básica de Swagger
+// Configuración de Swagger
 const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Documentación de API",
+      title: "API de Productos",
       version: "1.0.0",
-      description: "Documentación generada automáticamente con Swagger",
+      description: "Documentación de la API para la gestión de productos",
     },
     servers: [
       {
-        url: `http://localhost:${PORT}`, // Cambia si usas un dominio o puerto diferente
+        url: `http://localhost:${PORT}`,
+      },
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+      schemas: {
+        Producto: {
+          type: "object",
+          properties: {
+            id: {
+              type: "string",
+              description: "ID único del producto",
+            },
+            nombre: {
+              type: "string",
+              description: "Nombre del producto",
+            },
+            precio: {
+              type: "number",
+              description: "Precio del producto",
+            },
+            descripcion: {
+              type: "string",
+              description: "Descripción detallada del producto",
+            },
+            stock: {
+              type: "integer",
+              description: "Cantidad disponible en stock",
+            },
+          },
+          required: ["nombre", "precio", "descripcion", "stock"],
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
       },
     ],
   },
-  apis: ["./routes/*.js"], // Rutas de los archivos donde tienes comentarios de Swagger
+  apis: ["./routes/*.js"], // Ruta a tus archivos de rutas
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
